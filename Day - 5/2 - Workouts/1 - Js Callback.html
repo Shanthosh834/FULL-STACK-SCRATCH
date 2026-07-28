@@ -31,6 +31,21 @@
             console.log(message); // prints
         });
         greet("John", display); // runs first
+
+        let res;
+        setTimeout(function() {
+            res = 5;
+            console.log(res); // 5 after 5 sec
+        },5000);
+        console.log(res); // undefined
+
+
+        function value(print) {
+            console.log(print);
+        }
+        setTimeout(function() {
+            value(697);
+        }),5000; // 697
     </script>
 </body>
 </html>

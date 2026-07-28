@@ -93,119 +93,132 @@
 
   * The result is undefined because the async code has not finished yet.
 
-REMOVE ADS
-The Callback Idea
 
-The solution to the problem above, is to give JavaScript a callback function to call after the result is ready.
+6. The Callback Idea
 
-A callback is a function passed as an argument to another function.
+  * The solution to the problem above, is to give JavaScript a callback function to call after the result is ready.
 
-This technique allows a function to call another function.
-Example
-function done(value) {
-  myDisplayer(value);
-}
+  * A callback is a function passed as an argument to another function.
 
-setTimeout(function() {
-  done(5);
-}, 1000);
+  * This technique allows a function to call another function.
 
-// What is result here?
+  * Example
+    function done(value) {
+      myDisplayer(value);
+    }
 
-The value is used inside the callback.
+    setTimeout(function() {
+      done(5);
+    }, 1000);
 
-This works because the callback runs later.
-Asynchronous Callbacks
+    // What is result here?
 
-Callbacks are also commonly used with asynchronous APIs.
+  * The value is used inside the callback.
 
-In these cases, the callback runs after the asynchronous operation has completed.
+  * This works because the callback runs later.
 
-The callback is not what makes the operation asynchronous.
 
-The asynchronous API decides when to call the callback.
-Example
-// Set a Timeout
-setTimeout(function () {myDisplayer("Finished!")}, 3000);
+7. Asynchronous Callbacks
 
-In the example above:
+  * Callbacks are also commonly used with asynchronous APIs.
 
-myDisplayer is a callback function passed as an argument to setTimeout().
+  * In these cases, the callback runs after the asynchronous operation has completed.
 
-3000 is the number of milliseconds before myDisplayer will be called.
+  * The callback is not what makes the operation asynchronous.
 
-The browser waits three seconds before calling the callback.
+  * The asynchronous API decides when to call the callback.
 
-The delay is created by setTimeout(), not by the callback itself.
-Note
+  * Example
+    // Set a Timeout
+    setTimeout(function ()
+    {myDisplayer("Finished!")}, 3000);
 
-When you pass a function as an argument, remember not to use parenthesis.
+  
+  * In the example above:
 
-Right: setTimeout(myFunction, 3000)
+    * myDisplayer is a callback function passed as an argument to setTimeout().
 
-Wrong: setTimeout(myFunction(), 3000)
+    * 3000 is the number of milliseconds before myDisplayer will be called.
 
-REMOVE ADS
-Event Handling
+    * The browser waits three seconds before calling the callback.
 
-Callbacks are often used in JavaScript, especially in event handling:
+    * The delay is created by setTimeout(), not by the callback itself.
+  
+    * Note
+      * When you pass a function as an argument, remember not to use parenthesis.
 
-User interactions, such as button clicks or key presses, can be handled by providing a callback function to an event listener.
-Example
-document.getElementById("myButton").addEventListener("click", displayDate);
+      * Right: setTimeout(myFunction, 3000)
 
-In the example above, displayDate is a callback function passed as an argument to the addEventListener() method.
+      * Wrong: setTimeout(myFunction(), 3000)
 
-displayDate will be called when a user clicks the button with id="myButton".
-Sequence Control
 
-Sometimes you would like to have better control over when to execute a function.
+8. Event Handling
 
-Suppose you want to do a calculation, and then display the result.
+  * Callbacks are often used in JavaScript, especially in event handling:
 
-You could first call the calculator function myCalculator, and then call the display function myDisplayer:
-Example
-// Funtion to display something
-function myDisplayer(some) {
-  document.getElementById("demo").innerHTML = some;
-}
+  * User interactions, such as button clicks or key presses, can be handled by providing a callback function to an event listener.
+  
+  * Example
+      document.getElementById("myButton").addEventListener("click", displayDate);
 
-// Function to calculate a sum
-function myCalculator(num1, num2) {
-  let sum = num1 + num2;
-  return sum;
-}
+  * In the example above, displayDate is a callback function passed as an argument to the addEventListener() method.
 
-// Call the calculator
-let result = myCalculator(5, 5);
+  * displayDate will be called when a user clicks the button with id="myButton".
 
-// Call the displayer
-myDisplayer(result);
 
-Or, you could call the calculator function myCalculator, and let the calculator function call the display function myDisplayer:
-Example
-// Funtion to display something
-function myDisplayer(some) {
-  document.getElementById("demo").innerHTML = some;
-}
+9. Sequence Control
 
-// Function to calculate a sum
-function myCalculator(num1, num2) {
-  let sum = num1 + num2;
-  myDisplayer(sum);
-}
+  * Sometimes you would like to have better control over when to execute a function.
 
-// Call the calculator
-myCalculator(5, 5);
+  * Suppose you want to do a calculation, and then display the result.
 
-The problem with the first example above, is that you have to call two functions to display the result.
+  * You could first call the calculator function myCalculator, and then call the display function myDisplayer:
 
-The problem with the second example, is that you cannot prevent the calculator function from displaying the result.
+  * Example
+    // Funtion to display something
+    function myDisplayer(some) {
+      document.getElementById("demo").innerHTML = some;
+    }
 
-Now it is time to bring in a callback.
+    // Function to calculate a sum
+    function myCalculator(num1, num2) {
+      let sum = num1 + num2;
+      return sum;
+    }
 
-Using a callback, you could call the calculator function (myCalculator) with a callback (myCallback), and let the calculator function run the callback after the calculation is finished:
-Example (Callbacks)
+    // Call the calculator
+    let result = myCalculator(5, 5);
+
+    // Call the displayer
+    myDisplayer(result);
+
+  * Or, you could call the calculator function myCalculator, and let the calculator function call the display function myDisplayer:
+
+  * Example
+    // Funtion to display something
+    function myDisplayer(some) {
+      document.getElementById("demo").innerHTML = some;
+    }
+
+    // Function to calculate a sum
+    function myCalculator(num1, num2) {
+      let sum = num1 + num2;
+      myDisplayer(sum);
+    }
+
+    // Call the calculator
+    myCalculator(5, 5);
+
+  * The problem with the first example above, is that you have to call two functions to display the result.
+
+  * The problem with the second example, is that you cannot prevent the calculator function from displaying the result.
+
+  * Now it is time to bring in a callback.
+
+  * Using a callback, you could call the calculator function (myCalculator) with a callback (myCallback), and let the calculator function run the callback after the calculation is finished:
+
+
+10. Example (Callbacks)
 function myDisplayer(some) {
   document.getElementById("demo").innerHTML = some;
 }
