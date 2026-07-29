@@ -219,65 +219,75 @@
 
 
 10. Example (Callbacks)
-function myDisplayer(some) {
-  document.getElementById("demo").innerHTML = some;
-}
 
-function myCalculator(num1, num2, myCallback) {
-  let sum = num1 + num2;
-  myCallback(sum);
-}
+    function myDisplayer(some) {
+      document.getElementById("demo").innerHTML = some;
+    }
 
-myCalculator(5, 5, myDisplayer);
+    function myCalculator(num1, num2, myCallback) {
+      let sum = num1 + num2;
+      myCallback(sum);
+    }
 
-In the example above, myDisplayer is used as a callback function.
+    myCalculator(5, 5, myDisplayer);
 
-It is passed to myCalculator() as an argument.
-Callback Chains
+      * In the example above, myDisplayer is used as a callback function.
 
-Sometimes one callback starts another operation that uses another callback.
+      * It is passed to myCalculator() as an argument.
 
-This can lead to deeply nested, complex and hard-to-read code.
+      * Callback Chains
 
-When callbacks get deep, debugging is difficult. The logic moves from left to right and becomes difficult to follow.
+      * Sometimes one callback starts another operation that uses another callback.
 
-This is often referred to as "callback hell" or the "pyramid of doom".
-Example
-step1(function(result1) {
-  step2(result1, function(result2) {
-    step3(result2, function(result3) {
-      display(result3);
-    });
-  });
-});
-Note
+      * This can lead to deeply nested, complex and hard-to-read code.
 
-Promises and async/await were introduced to make asynchronous code easier to read and maintain.
-Summary
+      * When callbacks get deep, debugging is difficult. The logic moves from left to right and becomes difficult to follow.
 
-    A callback is a function passed to another function.
-    Callbacks can be synchronous or asynchronous.
-    The callback itself does not make code asynchronous.
-    Many JavaScript methods use synchronous callbacks.
-    Asynchronous APIs often use callbacks to handle results.
-    Promises and async/await build on the same idea while making asynchronous code easier to write.
+      * This is often referred to as "callback hell" or the "pyramid of doom".
 
-Callback is Not Asynchronous
+      * Example
+          step1(function(result1) {
+            step2(result1, function(result2) {
+              step3(result2, function(result3) {
+                display(result3);
+              });
+            });
+          });
 
-    A callback is just a function.
-    It may be called immediately (like map() or sort()).
-    It may be called later by an asynchronous API (like setTimeout() or fetch()).
-    The API (not the callback) is what introduces the asynchronous behavior.
+      * Note
 
-Callback Alternatives
+        * Promises and async/await were introduced to make asynchronous code easier to read and maintain.
 
-Asynchronous callback solutions are difficult to write and difficult to debug.
+      * Summary
+        * A callback is a function passed to another function.
+        * Callbacks can be synchronous or asynchronous.
+        * The callback itself does not make code asynchronous.
+        * Many JavaScript methods use synchronous callbacks.
+        * Asynchronous APIs often use callbacks to handle results.
+        * Promises and async/await build on the same idea while making asynchronous code easier to write.
 
-Because of this, modern asynchronous JavaScript do not use callbacks.
 
-Modern JavaScript offers superior alternatives for handling asynchronous operations, using Promises and the async/await syntax, which provide a cleaner flow and better error handling.
-When to Use a Callback?
+11. Callback is Not Asynchronous
 
-Callbacks are still important to understand.
+  * A callback is just a function.
+  * It may be called immediately (like map() or sort()).
+  * It may be called later by an asynchronous API (like setTimeout() or fetch()).
+  * The API (not the callback) is what introduces the asynchronous behavior.
 
-Where callbacks really shine are in asynchronous functions, where one function has to wait for another function (like waiting for a file to load).
+
+  * Callback Alternatives
+
+    * Asynchronous callback solutions are difficult to write and difficult to debug.
+
+    * Because of this, modern asynchronous JavaScript do not use callbacks.
+
+    * Modern JavaScript offers superior alternatives for handling asynchronous operations, using Promises and the async/await syntax, which provide a cleaner flow and better error handling.
+
+
+    * When to Use a Callback?
+
+      * Callbacks are still important to understand.
+
+      * Where callbacks really shine are in asynchronous functions, where one function has to wait for another function (like waiting for a file to load).
+
+      * so more calback difiult to handel thats wht promises cane when to use callback like asynchromous like wait setimeout like wise other use promises

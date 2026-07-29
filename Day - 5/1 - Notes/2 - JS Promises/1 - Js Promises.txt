@@ -1,0 +1,454 @@
+
+1. JavaScript Async Promises
+
+    "I Promise a Result!"
+
+A Promise represents the future result of an asynchronous operation.
+
+It acts as a placeholder for a value that is not available yet.
+
+When the operation finishes, the Promise is either fulfilled with a value or rejected with an error.
+Why Promises?
+
+Callbacks work well for simple asynchronous operations.
+
+However, several dependent callbacks can become difficult to read.
+
+Promises provide a cleaner and more readable way to organize asynchronous code.
+Callback Example
+step1(function(result1) {
+  step2(result1, function(result2) {
+    step3(result2, function(result3) {
+      display(result3);
+    });
+  });
+});
+
+This style is often called callback hell.
+The Same Flow with Promises
+step1()
+  .then(step2)
+  .then(step3)
+  .then(display);
+
+The code becomes flatter and easier to read.
+Promise States
+
+Every Promise is always in one of three states.
+State 	Description
+Pending 	The operation has started but has not finished.
+Fulfilled 	The operation completed successfully.
+Rejected 	The operation failed.
+
+Pending
+   │
+   ├────────► Fulfilled
+   │
+   └────────► Rejected
+
+A Promise is settled when it is fulfilled or rejected.
+Promises Returned by JavaScript APIs
+
+Many JavaScript APIs return Promises.
+
+The fetch() method is one example.
+Example
+fetch("fetch.txt")
+.then(function(response) {
+  return response.text();
+})
+.then(function(text) {
+  myDisplayer(text);
+})
+.catch(function(error) {
+  myDisplayer(error);
+});
+
+The fetch() method immediately returns a Promise.
+
+The download continues in the background while JavaScript runs other code.
+How then() Works
+
+The then() method is called immediately.
+
+It registers a function that JavaScript will call after the Promise is fulfilled.
+
+The registered function runs later when the Promise has a result.
+
+Each call to then() returns a new Promise.
+
+The then() method itself does not wait.
+
+It registers a callback and immediately returns a new Promise.
+Promise Flow
+
+fetch()
+
+      │
+
+      ▼
+
+returns a Promise
+
+      │
+
+      ▼
+
+then() registers a callback
+
+      │
+
+JavaScript continues
+
+      │
+
+      ▼
+
+Promise becomes fulfilled
+
+      │
+
+      ▼
+
+callback runs
+
+Example
+let promise = fetch("fetch.txt");
+
+promise.then(function(response) {
+  return response.text();
+});
+
+myDisplayer("JavaScript continues...");
+
+JavaScript does not wait for the download to finish.
+
+The callback runs only after the Promise is fulfilled.
+
+The callback passed to then() receives the Promise's fulfillment value.
+
+For fetch(), that value is a Response object.
+
+In the next section you will learn how to create your own Promise.
+Creating a Promise
+
+Most of the time you will use Promises returned by JavaScript APIs such as fetch().
+
+Sometimes you need to create your own Promise.
+
+Create a Promise with the Promise() constructor.
+Syntax
+const promise = new Promise(function(resolve, reject) {
+  // Asynchronous work
+
+  if (success) {
+    resolve(value);
+  } else {
+    reject(error);
+  }
+});
+
+The constructor receives a function with two parameters.
+Parameter 	Description
+resolve 	Fulfills the Promise with a value.
+reject 	Rejects the Promise with an error.
+
+Call either resolve() or reject().
+
+A Promise can settle only once.
+Example
+Create and Use a Promise
+const promise = new Promise(function(resolve, reject) {
+  const success = true;
+
+ if (success) {
+    resolve("Operation completed");
+ } else {
+    reject("Operation failed");
+  }
+});
+
+promise.then(function(value) {
+  myDisplayer(value);
+})
+.catch(function(error) {
+  myDisplayer(error);
+});
+
+The then() Method
+
+The then() method registers a function that handles a fulfilled Promise.
+
+The registered function receives the fulfillment value.
+Example
+fetch("fetch.txt")
+.then(function(response) {
+  return response.text();
+})
+.then(function(text) {
+  myDisplayer(text);
+});
+
+Each call to then() returns a new Promise.
+
+This makes Promise chaining possible.
+The catch() Method
+
+The catch() method registers a function that handles a rejected Promise.
+Example
+fetch("missing.txt")
+.then(function(response) {
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+
+  return response.text();
+})
+.then(function(text) {
+  myDisplayer(text);
+})
+.catch(function(error) {
+  myDisplayer(error.message);
+});
+
+A single catch() can handle errors from any earlier step in the Promise chain.
+The finally() Method
+
+The finally() method registers a function that runs when a Promise settles.
+
+It runs whether the Promise is fulfilled or rejected.
+Example
+fetch("fetch.txt")
+.then(function(response) {
+  return response.text();
+})
+.then(function(text) {
+  myDisplayer(text);
+})
+.catch(function(error) {
+  myDisplayer(error.message);
+})
+.finally(function() {
+  myDisplayer("Finished");
+});
+
+Promise Chaining
+
+Since then() returns a new Promise, several asynchronous operations can be chained together.
+Example
+function step1() {
+  return Promise.resolve("A");
+}
+
+function step2(value) {
+  return Promise.resolve(value + "B");
+}
+
+function step3(value) {
+  return Promise.resolve(value + "C");
+}
+
+step1()
+.then(function(value) {
+  return step2(value);
+})
+.then(function(value) {
+  return step3(value);
+})
+.then(function(value) {
+  myDisplayer(value);
+})
+.catch(function(error) {
+  myDisplayer(error);
+});
+
+Each step waits for the Promise returned by the previous step.
+Returning a Promise
+
+If a then() callback starts another asynchronous operation, return its Promise.
+Correct
+step1()
+.then(function(value) {
+  return step2(value);
+})
+.then(function(value) {
+  myDisplayer(value);
+});
+
+If you forget to return the Promise, the next step in the chain may run before the asynchronous operation has finished.
+Common Promise Mistakes
+Forgetting to Return a Promise
+
+If a then() callback starts another asynchronous operation, return its Promise.
+Incorrect
+step1()
+.then(function(value) {
+  step2(value);
+})
+.then(function(value) {
+  myDisplayer(value);
+});
+
+The second then() may run before step2() has finished.
+Correct
+step1()
+.then(function(value) {
+  return step2(value);
+})
+.then(function(value) {
+  myDisplayer(value);
+});
+
+Returning the Promise keeps the chain in the correct order.
+Forgetting to Handle Errors
+
+Unhandled Promise rejections make debugging difficult.
+
+Use catch() to handle errors.
+Example
+fetch("missing.txt")
+.then(function(response) {
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+
+  return response.text();
+})
+.catch(function(error) {
+  myDisplayer(error.message);
+});
+
+Expecting Promises to Block JavaScript
+
+Creating a Promise does not pause JavaScript.
+
+JavaScript continues executing while the asynchronous operation is in progress.
+Example
+myDisplayer("Start");
+
+fetch("fetch.txt")
+.then(function() {
+  myDisplayer("Finished");
+});
+
+myDisplayer("JavaScript continues");
+
+The output is:
+Start
+JavaScript continues
+Finished
+
+Promises represent asynchronous operations.
+
+They do not stop JavaScript from executing other code.
+Promises and Asynchronous Programming
+
+A Promise represents the result of an asynchronous operation.
+
+The asynchronous work is usually performed by a browser API such as fetch() or setTimeout().
+
+The Promise provides a clean way to receive the result when that operation finishes.
+
+A Promise does not make code asynchronous.
+
+It represents the result of an asynchronous operation.
+Promises and the Event Loop
+
+Promise callbacks do not run immediately.
+
+They are scheduled to run after the current JavaScript task has completed.
+
+The JavaScript Event Loop is responsible for running these callbacks.
+
+You will learn more about this in the JavaScript Event Loop chapter.
+Promises vs Callbacks
+Callbacks 	Promises
+Can become deeply nested. 	Can be chained.
+Error handling is often spread throughout the code. 	A single catch() can handle errors from the entire chain.
+Harder to read for complex operations. 	More readable for multiple asynchronous steps.
+Summary
+
+    A Promise represents the future result of an asynchronous operation.
+    A Promise is either pending, fulfilled, or rejected.
+    then() registers fulfillment handlers.
+    catch() registers rejection handlers.
+    finally() registers a handler that runs when the Promise settles.
+    Return Promises from then() to keep Promise chains in the correct order.
+    Most JavaScript APIs, including fetch(), return Promises.
+
+Next Step
+
+Promises make asynchronous code easier to organize.
+
+JavaScript also provides the async and await keywords, which let you write Promise-based code in a style that looks like synchronous JavaScript.
+
+Continue with the next chapter to learn Async and Await.
+
+JavaScript Async/Await
+XP 910+10•🔥 18 days
+Get Certified Offer
+PLUS
+SPACES
+GET CERTIFIED
+FOR TEACHERS
+BOOTCAMPS
+CONTACT US
+Top Tutorials
+HTML Tutorial
+CSS Tutorial
+JavaScript Tutorial
+How To Tutorial
+SQL Tutorial
+Python Tutorial
+W3.CSS Tutorial
+Bootstrap Tutorial
+PHP Tutorial
+Java Tutorial
+C++ Tutorial
+jQuery Tutorial
+Top References
+HTML Reference
+CSS Reference
+JavaScript Reference
+SQL Reference
+Python Reference
+W3.CSS Reference
+Bootstrap Reference
+PHP Reference
+HTML Colors
+Java Reference
+AngularJS Reference
+jQuery Reference
+Top Examples
+HTML Examples
+CSS Examples
+JavaScript Examples
+How To Examples
+SQL Examples
+Python Examples
+W3.CSS Examples
+Bootstrap Examples
+PHP Examples
+Java Examples
+XML Examples
+jQuery Examples
+Get Certified
+HTML Certificate
+CSS Certificate
+JavaScript Certificate
+Front End Certificate
+SQL Certificate
+Python Certificate
+PHP Certificate
+jQuery Certificate
+Java Certificate
+C++ Certificate
+C# Certificate
+XML Certificate
+   
+FORUM ABOUT ACADEMY
+W3Schools is optimized for learning and training. Examples might be simplified to improve reading and learning. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content. While using W3Schools, you agree to have read and accepted our terms of use, cookies and privacy policy.
+
+Copyright 1999-2026 by Refsnes Data. All Rights Reserved. W3Schools is Powered by W3.CSS.
+
+-->

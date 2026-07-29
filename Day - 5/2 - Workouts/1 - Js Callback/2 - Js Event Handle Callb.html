@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Js Event Handling Callback </h1>
+    <button id = "button">time is</button>
+    <p id = "demo"></p>
+    <script>
+
+        function func() {
+            setTimeout(() => {
+                document.getElementById('demo').innerHTML = Date();
+            }, 5000);
+        }
+        document.getElementById('button').addEventListener("click", func);
+
+
+        // Sequence Part 1 - Separate calls
+        const funcc = ((text) => {
+            return text;
+        });
+
+        const part1 = ((one, two) => { // Sequence Part 1 - Separate calls
+            let sum = one + two;
+            return sum;
+        });
+
+        const part2 = ((one, two) => { // Part 2 - One function directly calls another
+            let sum = one + two;
+            return funcc(sum); // part 2 - text = 4 sum(arguments) value to the funcc(parameter)
+        });
+
+        console.log(part1(2,2));
+        console.log(funcc("Hiii")); // need to manually give according to the Sequence chnage
+        console.log(part2(2,2)); // part 2
+
+
+        // Sequence Part - 3 One function receives another function as a callback
+        const part3 = ((one, two, clback) => {
+            let add = one + two;
+            return clback(add);
+        });
+
+        console.log(part3(2,2, funcc));
+
+        // Part 2 = "I choose the function."
+        // Part 3 = "You give me the function."
+    </script>
+</body>
+</html>
