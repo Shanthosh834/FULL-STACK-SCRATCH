@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Js Promise </h1>
+    <script>
+        const mypro = new Promise((res, rej) => {
+            let test = false;
+            if(test) {
+                res(" Completed!!! ");
+            } else {
+                rej(" Failed!!! ");
+            }
+        });
+
+        mypro.then((res) => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+        // Example - 2
+        fetch("fetch.txt")
+        .then(function(response) {
+            return response.text();
+        })
+        .then(function(data) {
+            myDisplay(data);
+        })
+        .catch(function(error) {myDisplay(error)});
+
+        function myDisplay(text) {
+            console.log(text);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Js Chain Promise </h1>
+    <script>
+        function myDisplay(value) {
+            console.log(value);
+        }
+        function step1() {
+            return Promise.resolve("A");
+        }
+        function step2(val) {
+            return Promise.resolve(val + "B");
+        }
+        function step3(val) {
+            return Promise.resolve(val + "C");
+        }
+
+        step1().then(function(val) {
+            return step2(val)
+        })
+        .then(function(val) {
+            return step3(val)
+        })
+        .then(function(val) {
+            myDisplay(val)
+        })
+        .catch(function(err) {
+            myDisplay(err);
+        });
+
+
+/**
+        1. We create myDisplay() and give it a value parameter.
+        2. Inside it, we console.log(value).
+        3. We create three functions: step1(), step2(), and step3().
+        4. Each function returns a Promise using Promise.resolve().
+        5. We start the chain by calling step1().
+        6. The first .then() receives "A" and calls step2(val).
+        7. The next .then() receives "AB" and calls step3(val).
+        8. The next .then() receives "ABC" and calls myDisplay(value).
+        9. myDisplay() prints the final value. 
+**/
+    </script>
+</body>
+</html>

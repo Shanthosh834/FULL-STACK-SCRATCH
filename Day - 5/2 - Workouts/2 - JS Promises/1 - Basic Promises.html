@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Js Basic Promises </h1>
+
+    <script>
+        // 1 - Create a Promise
+        const mypro = new Promise((res, rej) => {
+            res("Success");
+        });
+
+        // 2 - Use .then() or .catch if promise succeess or fail
+        mypro.then((ress) => {
+            console.log(ress);
+        });
+
+        // rej and catch
+        const myPromise = new Promise((res, rej) => {
+            rej(" Something Wrong!! ");
+        });
+
+        myPromise.then((ress) => {
+            conSole.log(ress);
+        }) 
+        .catch((err) => {
+            console.log(err);
+        });
+    </script>
+</body>
+</html>
