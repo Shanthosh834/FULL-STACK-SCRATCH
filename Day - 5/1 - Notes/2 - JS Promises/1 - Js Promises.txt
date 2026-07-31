@@ -352,70 +352,89 @@ callback runs
           myDisplayer(error.message);
         });
 
-Expecting Promises to Block JavaScript
+    * 200 → OK
+    * 201 → Created
+    * 400 → Bad Request
+    * 401 → Unauthorized
+    * 403 → Forbidden
+    * 404 → Not Found
+    * 500 → Internal Server Error
+    * 503 → Service Unavailable
 
-Creating a Promise does not pause JavaScript.
 
-JavaScript continues executing while the asynchronous operation is in progress.
-Example
-myDisplayer("Start");
+10. Expecting Promises to Block JavaScript
 
-fetch("fetch.txt")
-.then(function() {
-  myDisplayer("Finished");
-});
+  * Creating a Promise does not pause JavaScript.
 
-myDisplayer("JavaScript continues");
+  * JavaScript continues executing while the asynchronous operation is in progress.
 
-The output is:
-Start
-JavaScript continues
-Finished
+  * Example
+      myDisplayer("Start");
 
-Promises represent asynchronous operations.
+      fetch("fetch.txt")
+      .then(function() {
+        myDisplayer("Finished");
+      });
 
-They do not stop JavaScript from executing other code.
-Promises and Asynchronous Programming
+      myDisplayer("JavaScript continues");
 
-A Promise represents the result of an asynchronous operation.
+  * The output is:
+      Start
+      JavaScript continues
+      Finished
 
-The asynchronous work is usually performed by a browser API such as fetch() or setTimeout().
+  * Promises represent asynchronous operations.
 
-The Promise provides a clean way to receive the result when that operation finishes.
+  * They do not stop JavaScript from executing other code.
 
-A Promise does not make code asynchronous.
 
-It represents the result of an asynchronous operation.
-Promises and the Event Loop
+11. Promises and Asynchronous Programming
 
-Promise callbacks do not run immediately.
+  * A Promise represents the result of an asynchronous operation.
 
-They are scheduled to run after the current JavaScript task has completed.
+  * The asynchronous work is usually performed by a browser API such as fetch() or setTimeout().
 
-The JavaScript Event Loop is responsible for running these callbacks.
+  * The Promise provides a clean way to receive the result when that operation finishes.
 
-You will learn more about this in the JavaScript Event Loop chapter.
-Promises vs Callbacks
-Callbacks 	Promises
-Can become deeply nested. 	Can be chained.
-Error handling is often spread throughout the code. 	A single catch() can handle errors from the entire chain.
-Harder to read for complex operations. 	More readable for multiple asynchronous steps.
-Summary
+  * A Promise does not make code asynchronous.
 
-    A Promise represents the future result of an asynchronous operation.
-    A Promise is either pending, fulfilled, or rejected.
-    then() registers fulfillment handlers.
-    catch() registers rejection handlers.
-    finally() registers a handler that runs when the Promise settles.
-    Return Promises from then() to keep Promise chains in the correct order.
-    Most JavaScript APIs, including fetch(), return Promises.
+  * It represents the result of an asynchronous operation.
 
-Next Step
 
-Promises make asynchronous code easier to organize.
+12. Promises and the Event Loop
 
-JavaScript also provides the async and await keywords, which let you write Promise-based code in a style that looks like synchronous JavaScript.
+  * Promise callbacks do not run immediately.
 
-Continue with the next chapter to learn Async and Await.
+  * They are scheduled to run after the current JavaScript task has completed.
 
-JavaScript Async/Await
+  * The JavaScript Event Loop is responsible for running these callbacks.
+
+
+13. Promises vs Callbacks
+
+  * Callbacks 	                                          Promises
+    Can become deeply nested. 	                          Can be chained.
+    Error handling is often spread throughout the code. 	A single catch() can handle errors from the entire chain.
+    Harder to read for complex operations. 	              More readable for multiple asynchronous steps.
+
+
+14. Summary
+
+    * A Promise represents the future result of an asynchronous operation.
+    * A Promise is either pending, fulfilled, or rejected.
+    * then() registers fulfillment handlers.
+    * catch() registers rejection handlers.
+    * finally() registers a handler that runs when the Promise settles.
+    * Return Promises from then() to keep Promise chains in the correct order.
+    * Most JavaScript APIs, including fetch(), return Promises.
+
+
+15. Next Step
+
+  * Promises make asynchronous code easier to organize.
+
+  * JavaScript also provides the async and await keywords, which let you write Promise-based code in a style that looks like synchronous JavaScript.
+
+  * Continue with the next chapter to learn Async and Await.
+
+  * JavaScript Async/Await

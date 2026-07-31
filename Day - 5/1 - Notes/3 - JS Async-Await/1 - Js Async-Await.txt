@@ -1,0 +1,257 @@
+
+1. JavaScript Async/Await
+
+    * "async and await make promises easier"
+
+    * The async and await keywords make Promise-based code easier to read.
+
+    * They let asynchronous code look much like ordinary synchronous code.
+
+    * Behind the scenes, async and await still use Promises.
+
+
+2. The async Keyword
+
+    * The async keyword before a function makes the function return a promise.
+
+    * This is true even if you return a normal value.
+
+    * If the function returns a value, JavaScript automatically wraps that value in a Promise.
+
+    * Example
+        // Create an async function
+        async function hello() {
+          return "Hello World!";
+        }
+
+        // Call the async function
+        hello().then(function(value) {
+          myDisplayer(value);
+        });
+
+
+3. The await Keyword
+
+    * The await keyword waits for a Promise to settle.
+
+    * It can only be used inside an async function or at the top level of a JavaScript module.
+
+    * While the async function is waiting, the rest of the program can continue running.
+
+    * Example
+        // Create an async function
+        async function getData() {
+          let response = await fetch("fetch.txt");
+          let text = await response.text();
+          myDisplayer(text);
+        }
+
+        // Call the async function
+        getData();
+
+    * What Happens During await?
+
+    * The await keyword pauses only the current async function.
+
+    * It does not pause JavaScript.
+
+    * Other code, timers, events, and user interactions can continue while the Promise is pending.
+
+    * Example
+        myDisplayer("Start");
+
+        // Create an async function
+        async function getData() {
+          await fetch("fetch.txt");
+          myDisplayer("Done");
+        }
+
+        // Call the async function
+        getData();
+
+        myDisplayer("Continue");
+
+    * Output:
+        Start
+        Continue
+        Done
+
+    * JavaScript do not wait.
+
+    * The async function waits.
+
+
+4. Compare Promise and await
+
+    1. Promise Version
+        // Fetch function
+        fetch("fetch.txt")
+        .then(function(response) {
+          return response.text();
+        })
+        .then(function(text) {
+          myDisplayer(text);
+        });
+
+    2. async/await
+        // Asyn function
+        async function getData() {
+          let response = await fetch("fetch.txt");
+          let text = await response.text();
+          myDisplayer(text);
+        }
+        // Call async function
+        getData();
+
+        * Both examples do exactly the same work.
+
+        * The second example is easier to read because the statements appear in the order they execute.
+
+
+5. Handling Errors
+
+    * Use try...catch to handle rejected Promises.
+
+    * Example
+        async function getData() {
+          try {
+            let response = await fetch("fetch.txt");
+            let text = await response.text();
+            myDisplayer(text);
+          } catch(err) {
+            myDisplayer(err);
+          }
+        }
+
+    * Errors from awaited promises are caught like normal errors.
+
+
+6. Multiple await
+
+    * Many beginners don't realize that awaits run one after another.
+
+    * Example
+        let a = await fetch("a.txt");
+        let b = await fetch("b.txt");
+        let c = await fetch("c.txt");
+
+    * Each await waits for the previous operation to finish.
+
+    * If the operations do not depend on each other, running them one after another may be slower than necessary.
+
+The next chapter explains how to run asynchronous operations in parallel.
+
+
+7. Summary
+
+    * async functions always return Promises.
+    * await waits for a Promise to settle.
+    * await pauses the current async function, not all of JavaScript.
+    * try...catch handles Promise errors.
+    * async and await make Promise-based code easier to read.
+
+
+8. More Examples
+
+    1. Example
+            async function myFunction() {
+              return "Hello";
+            }
+
+        * Is the same as:
+            function myFunction() {
+              return Promise.resolve("Hello");
+            }
+
+        * The result is handled with then() because it is a promise:
+
+            myFunction().then(
+              function(value) { /* code if successful */ },
+              function(value) { /* code if some error */ }
+            );
+
+    2. Example
+        async function myFunction() {
+          return "Hello";
+        }
+        myFunction().then(
+          function(value) {myDisplayer(value);},
+          function(value) {myDisplayer(value);}
+        );
+
+        * Or simpler, since you expect a normal value (a normal response, not an error):
+
+    * Example
+        async function myFunction() {
+          return "Hello";
+        }
+        myFunction().then(
+          function(value) {myDisplayer(value);}
+        );
+
+
+9. Why async and await Exist
+
+    * Promise chains can become long.
+
+    * async and await were created to reduce nesting and improve readability.
+
+    * Promises Example
+        // Three functions to run in steps
+        function step1() {
+          return Promise.resolve("A");
+        }
+        function step2(value) {
+          return Promise.resolve(value + "B");
+        }
+        function step3(value) {
+          return Promise.resolve(value + "C");
+        }
+
+        // Run the three functions in steps
+        step1()
+        .then(function(value) {
+          return step2(value);
+        })
+        .then(function(value) {
+          return step3(value);
+        })
+        .then(function(value) {
+          myDisplayer(value);
+        });
+
+    * The same flow with async and await is easier to read.
+
+    * Example
+        // Function to run the three functions in steps
+        async function run() {
+          let v1 = await step1();
+          let v2 = await step2(v1);
+          let v3 = await step3(v2);
+          myDisplayer(v3);
+        }
+
+        run();
+
+
+10. Common Beginner Mistakes
+
+    * Using await outside an async function causes an error.
+
+    * Forgetting try...catch can hide async errors.
+
+
+    1. Synchronous
+        → Tasks execute one after another and wait.
+
+    2. Asynchronous
+        → A task can wait for an operation while JavaScript continues other work.
+
+    3. Callback
+        → A function passed as an argument to another function.
+
+    4. Promise
+        → A cleaner way to handle the result of asynchronous operations.
+
+    5. async/await
+        → A simpler, more readable way to work with Promises.

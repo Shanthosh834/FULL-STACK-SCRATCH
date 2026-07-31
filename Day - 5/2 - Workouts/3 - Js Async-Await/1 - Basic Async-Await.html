@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Js Basic Async Await </h1>
+    <script>
+        // 1 - Async Keyword
+        async function hello() {
+            return "Hello World ";
+        }
+        hello().then(function(val) {
+            myDisplayy(val);
+        })
+        .catch(function(err) {
+            myDisplayy(err);
+        });
+        function myDisplayy(txt) {
+            console.log(txt);
+        };
+
+        // 2 - Await Keyword
+        async function getData() {
+            let response = await fetch("fetch.txt");
+            let text = await response.text();
+            myDisplay(text);
+        }
+        function myDisplay(txt) {
+            console.log(txt);
+        }
+        getData();
+
+        // 3 - Js Not Wait
+        myisplay("Start");
+        async function Data() {
+            await fetch("fetch.txt");
+            myisplay("Done");
+        }
+        myisplay("Continue");
+        
+        function myisplay(txt) {
+            console.log(txt);
+        }
+        Data();
+    </script>
+</body>
+</html>

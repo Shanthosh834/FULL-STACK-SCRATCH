@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Js Async Await Handle Error </h1>
+    <script>
+        async function getData() {
+            try {
+                let response = await fetch("fetch.txta");
+                let text = await response.text();
+                myDisplay(text);
+            } catch(err) {
+                myDisplay(err);
+            }
+        }
+                function myDisplay(txt) {
+                console.log(txt);
+            }
+
+            getData();
+    </script>
+</body>
+</html>

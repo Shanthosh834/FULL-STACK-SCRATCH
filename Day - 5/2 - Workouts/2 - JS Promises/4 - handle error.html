@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Js Handling Errors </h1>
+    <script>
+        fetch("fetch.txt")
+        .then(function(response) {
+            if(!response.ok) {
+                throw new Error(response.status);
+            }
+            return response.text();
+        })
+        .then(function(data) {
+            myDisplay(data);
+        })
+        .catch(function(err) {
+            myDisplay(err);
+        });
+        function myDisplay(text) {
+            console.log(text);
+        };
+    </script>
+</body>
+</html>
