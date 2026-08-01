@@ -1,0 +1,2 @@
+
+This has Needed Api Url methods like fetch, post, specific see the Js Cru html file

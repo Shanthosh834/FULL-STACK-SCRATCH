@@ -56,156 +56,181 @@
         blob() 	            Reads the response as binary data.
         bytes() 	        Reads the response as bytes.
         arrayBuffer() 	    Reads the response as an ArrayBuffer
-The ok Property
-Example
 
-The response.ok should be true.
-// Async function to download a file
-async function loadText(file) {
-  const response = await fetch(file);
-  myDisplayer(response.ok);
-}
-The status Property
-Example
+    1. The ok Property
 
-The response.status should be 200.
-// Async function to download a file
-async function loadText(file) {
-  const response = await fetch(file);
-  myDisplayer(response.status);
-}
+      * Example
 
-REMOVE ADS
-The url Property
-Example
-// Async function to download a file
-async function loadText(file) {
-  const response = await fetch(file);
-  myDisplayer(response.url);
-}
-Fetching JSON
+      * The response.ok should be true.
+        // Async function to download a file
+        async function loadText(file) {
+          const response = await fetch(file);
+          myDisplayer(response.ok);
+        }
 
-The json() method converts a JSON response into a JavaScript object.
-Example
-async function loadCustomer() {
-  const response = await fetch("customer.json");
-  const customer = await response.json();
-  myDisplayer(customer.name);
-}
+    2. The status Property
 
-// Call the async function
-loadCustomer();
+      * Example
 
-REMOVE ADS
-Loading Multiple Files
+      * The response.status should be 200.
+        // Async function to download a file
+        async function loadText(file) {
+          const response = await fetch(file);
+          myDisplayer(response.status);
+        }
 
-Independent downloads can run in parallel.
-Example
-// Async function to download files
-async function loadData() {
-  const [customerResponse, productsResponse, newsResponse] = await Promise.all([
-    fetch("customer.json"),
-    fetch("products.json"),
-    fetch("news.json")
-  ]);
-  const customer = await customerResponse.json();
-  const products = await productsResponse.json();
-  const news = await newsResponse.json();
-  myDisplayer("Custome name: " + customer.name);
-  myDisplayer(products.length + " products");
-  myDisplayer(news.length + " news items");
-}
 
-// Call the async function
-loadData();
-Checking for Errors
+    3. The url Property
 
-fetch() resolves when the server responds.
+      * Example
+        // Async function to download a file
+        async function loadText(file) {
+          const response = await fetch(file);
+          myDisplayer(response.url);
+        }
 
-An HTTP error such as 404 (Not Found) does not reject the Promise.
 
-Instead, check the ok property.
-Example
-// Async function to download a file
-async function loadText(file) {
-  const response = await fetch(file);
-  if (!response.ok) {
-    throw new Error(response.status + " " + response.statusText);
-  }
-  return await response.text();
-}
-Handling Errors
+4. Fetching JSON
 
-Use try ... catch to handle errors.
-Example
-// Async function to download a file
-async function loadText(file) {
-  try {
-    const response = await fetch(file);
-    if (!response.ok) {
-      throw new Error("HTTP Error " + response.status);;
-    }
-    myDisplayer(await response.text();
-  } catch(err) {
-    myDisplayer(err.message);
-  }
-}
-Try Without Error
-// Call the async function
-loadText("fetch.txt");
-Try With Error
-// Call the async function
-loadText("missing.txt");
-Important: HTTP Errors
+  * The json() method converts a JSON response into a JavaScript object.
 
-A common beginner mistake is expecting fetch to fail on Http errors like 404 or 500.
+  * Example
+      async function loadCustomer() {
+        const response = await fetch("customer.json");
+        const customer = await response.json();
+        myDisplayer(customer.name);
+      }
 
-Fetch only rejects on network errors.
+      // Call the async function
+      loadCustomer();
 
-A 404 response is not a rejected promise.
 
-You must check response.ok.
+5. Loading Multiple Files (Promise.all)
 
-The above example handles HTTP errors correctly.
-Summary
+  * Independent downloads can run in parallel.
 
-    The fetch() method downloads resources from a server.
-    fetch() returns a Promise that resolves to a Response object.
-    Use text() to read text responses.
-    Use json() to read JSON responses.
-    Use Promise.all() to download multiple resources in parallel.
-    Check response.ok to detect HTTP errors.
-    Use try...catch to handle errors.
+  * Example
+      // Async function to download files
+      async function loadData() {
+        const [customerResponse, productsResponse, newsResponse] = await Promise.all([
+          fetch("customer.json"),
+          fetch("products.json"),
+          fetch("news.json")
+        ]);
+        const customer = await customerResponse.json();
+        const products = await productsResponse.json();
+        const news = await newsResponse.json();
+        myDisplayer("Custome name: " + customer.name);
+        myDisplayer(products.length + " products");
+        myDisplayer(news.length + " news items");
+      }
 
-Common fetch Mistakes
+      // Call the async function
+      loadData();
 
-Forgetting await gives you a promise instead of data.
-Example
-async function loadData() {
-  let response = await fetch("data.json");
-  let data = response.json();
-  myDisplayer(data);
-}
 
-This logs a promise.
+6. Checking for Errors
 
-You must use await to get the JSON.
-Example
-async function loadData() {
-  let response = await fetch("data.json");
-  let data = await response.json();
-  myDisplayer(data);
-}
-Debugging Tip
+  * fetch() resolves when the server responds.
 
-Most fetch bugs are not JavaScript bugs.
+  * An HTTP error such as 404 (Not Found) does not reject the Promise.
 
-They are path and response problems.
+  * Instead, check the ok property.
 
-If fetch is not working, check the console.
+  * Example
+      // Async function to download a file
+      async function loadText(file) {
+        const response = await fetch(file);
+        if (!response.ok) {
+          throw new Error(response.status + " " + response.statusText);
+        }
+        return await response.text();
+      }
 
-Then check the Network tab.
 
-    Is the file path correct.
-    Is the status code 200.
-    Is the response JSON.
+7. Handling Errors
+
+  * Use try ... catch to handle errors.
+
+  * Example
+      // Async function to download a file
+      async function loadText(file) {
+        try {
+          const response = await fetch(file);
+          if (!response.ok) {
+            throw new Error("HTTP Error " + response.status);;
+          }
+          myDisplayer(await response.text();
+        } catch(err) {
+          myDisplayer(err.message);
+        }
+      }
+
+  * Try Without Error
+    // Call the async function
+    loadText("fetch.txt");
+    Try With Error
+    // Call the async function
+    loadText("missing.txt");
+
+
+8. Important: HTTP Errors
+
+  * A common beginner mistake is expecting fetch to fail on Http errors like 404 or 500.
+
+  * Fetch only rejects on network errors.
+
+  * A 404 response is not a rejected promise.
+
+  * You must check response.ok.
+
+  * The above example handles HTTP errors correctly.
+
+
+9. Summary
+
+    * The fetch() method downloads resources from a server.
+    * fetch() returns a Promise that resolves to a Response object.
+    * Use text() to read text responses.
+    * Use json() to read JSON responses.
+    * Use Promise.all() to download multiple resources in parallel.
+    * Check response.ok to detect HTTP errors.
+    * Use try...catch to handle errors.
+
+
+10. Common fetch Mistakes
+
+  * Forgetting await gives you a promise instead of data.
+
+  * Example
+      async function loadData() {
+        let response = await fetch("data.json");
+        let data = response.json();
+        myDisplayer(data);
+      }
+
+  * This logs a promise.
+
+  * You must use await to get the JSON.
+
+  * Example
+      async function loadData() {
+        let response = await fetch("data.json");
+        let data = await response.json();
+        myDisplayer(data);
+      }
+
+
+11. Debugging Tip
+
+  * Most fetch bugs are not JavaScript bugs.
+
+  * They are path and response problems.
+
+  * If fetch is not working, check the console.
+
+  * Then check the Network tab.
+
+    * Is the file path correct.
+    * Is the status code 200.
+    * Is the response JSON.

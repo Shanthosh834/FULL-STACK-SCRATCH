@@ -10,8 +10,128 @@
     <script>
         // 1 - Response Object
         async function load(file) {
-            
+            try {
+                let response = await fetch("fetch.txt");
+                let text = response.text();
+                Call1(response);
+            } catch(err) {
+                Call1(err);
+            }
         }
+        function Call1(txt) {
+            console.log(txt);
+        }
+        load();
+
+
+        // 2 - Ok Property
+        async function ok(file) {
+            try {
+                let response = await fetch(file);
+                let text = response.text();
+                Call2(response.ok);
+            } catch(err) {
+                Call2(err);
+            }
+        }
+            function Call2(txt) {
+                console.log(txt);
+            }
+        ok("fetch.txt");
+
+
+        // 3 - Status Property
+        async function statu(file) {
+            try {
+                let response = await fetch(file);
+                let text = response.text();
+                Call3(response.status);
+            } catch(err) {
+                Call3(err);
+            }
+        }
+
+        function Call3(txt) {
+            console.log(txt);
+        }
+        statu("fetch.txt");
+
+
+        // 4 - Url Property
+        async function urll(file) {
+            try {
+                let response = await fetch(file);
+                let text = response.text();
+                Call3(response.url);
+            } catch(err) {
+                Call4(err);
+            }
+        }
+        function Call4(txt) {
+            console.log(txt);
+        }
+        urll("fetch.txt");
+
+
+        // 5 - Json Fetching
+        async function jso(file) {
+            try {
+                let response = await fetch(file);
+                let text = await response.json();
+                Call5(text);
+                Call5(text.name);
+            } catch(err) {
+                Call5(err);
+            }
+        }
+
+        function Call5(txt) {
+            console.log(txt);
+        }
+        jso("customer.json");
+
+
+        // 6 - Loading Multiple Files / Promise.all
+        async function all() {
+            try {
+                const[customerRes, ProductRes, NewsRes] = await Promise.all([
+                    fetch("customer.json"),
+                    fetch("products.json"),
+                    fetch("news.json")
+                ]);
+
+                const customer = await customerRes.json();
+                const products = await ProductRes.json();
+                const news = await NewsRes.json();
+                Call6("Customer Name: " + customer.name);
+                Call6("Products Length: " + products.length + JSON.stringify(products));
+                Call6("News Length: " + news.length + JSON.stringify(news));
+            } catch(err) {
+                Call6(err);
+            }
+        }
+        function Call6(txt) {
+            console.log(txt);
+        }
+        all();
+
+
+        // 7,8 - Check For Errors & Try, Catch
+        async function loadTextt(file) {
+        try {
+          const response = await fetch(file);
+          if (!response.ok) {
+            throw new Error("HTTP Error " + response.status);;
+          }
+          myDisplayer(await response.text());
+        } catch(err) {
+          myDisplayer(err.message);
+        }
+      }
+      function myDisplayer(txt) {
+        console.log(txt);
+      }
+      loadTextt("fetch.txt");
     </script>
 </body>
 </html>
