@@ -1,0 +1,92 @@
+
+1. Modify Code
+    * Now that your development environment is set up, let's try to modify the default app to display "Hello, World!".
+
+    * Look in the my-react-app directory, and you will find a src folder. Inside the src folder there is a file called App.jsx, open it and it will look like this:
+
+    * This is the default content of the App.jsx file in the src folder:
+    -> App.jsx
+
+    * Replace all the content of the App.jsx file with the code below:
+    -> App.jsx
+
+        function App() {
+          return (
+            <div className="App">
+              <h1>Hello World!</h1>
+            </div>
+          );
+        }
+
+        export default App;
+
+    * See the changes in the browser when you click Save.
+
+2. What is JSX
+    * JSX = JavaScript + HTML mixed together!
+
+    * Looks like HTML but it's JavaScript!
+
+        function App() {
+            const name = "Shanthosh";
+            const age = 23;
+            return (
+                // JSX starts here
+                <div>
+                    <h1>Hello {name}!</h1>
+                    <p>Age: {age}</p>
+                    <p>{age >= 18 ? "Adult" : "Minor"}</p>
+                </div>
+                // JSX ends here
+            );
+        }
+
+3. JSX RULES:
+    1. Return ONE parent element
+    2. Use className instead of class
+    3. Use {} for JavaScript expressions
+    4. Self-closing tags: <img /> <input />
+    5. camelCase attributes: onClick, onChange
+
+
+4. What is Components
+    * Component = reusable piece of UI
+
+    * Like a function that returns JSX!
+
+    * FUNCTION COMPONENT (Modern way):
+
+    * In React, EVERY function that returns JSX is a component!
+
+    * So function name, file name and calling component name should be start with caps
+
+    * component must satrt with caps
+
+        function UserCard() {
+            return (
+                <div className="card">
+                    <h2>Shanthosh S</h2>
+                    <p>React Developer</p>
+                </div>
+            );
+        }
+        // Arrow function component:
+        const UserCard = () => {
+            return (
+                <div>
+                    <h2>Shanthosh S</h2>
+                </div>
+            );
+        }
+        // USE component inside another component:
+        function App() {
+            return (
+                <div>
+                    <UserCard />  // Use like HTML tag!
+                    <UserCard />  // Reuse it!
+                    <UserCard />  // Again!
+                </div>
+            );
+        }
+
+    * console.log(name); // to show in terminal need to do in node here react is frontend so only browser log

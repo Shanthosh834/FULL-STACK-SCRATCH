@@ -1,0 +1,57 @@
+
+    Day 2 - PROPS + useState
+
+1. PROPS
+    1. What are Props?
+
+        * Props = Data passed from a parent component to a child component.
+
+        * Think of props like function parameters but for React components!
+
+    2.  Why Props?
+
+        * Make components reusable
+
+        * Pass dynamic data to components
+
+        * Components can show different content with same structure
+
+
+2. 📝 Props Syntax:
+
+    1. Parent Component (Passing Props)
+
+        function App() {
+        return (
+            <div>
+                {/* Passing props to child */}
+                <UserCard name="Shanthosh" age={22} city="Chennai" />
+                <UserCard name="John" age={25} city="Mumbai" />
+                <UserCard name="Mary" age={30} city="Delhi" />
+            </div>
+        );
+        }
+
+    2. Child Component (Receiving Props)
+
+        function UserCard({ name, age, city }) {  // ← Receiving props
+        return (
+            <div>
+                <h2>Name: {name}</h2>   // ← Using props
+                <p>Age: {age}</p>       // ← Using props
+                <p>City: {city}</p>     // ← Using props
+            </div>
+        );
+        }
+
+3. Props Flow:
+
+    Parent (App.jsx)
+        │
+        │  Passes props: name="Shanthosh" age={22}
+        ▼
+    Child (UserCard.jsx)
+        │
+        │  Receives: { name, age }
+        ▼
+    Renders: Name: Shanthosh, Age: 22
