@@ -1,0 +1,50 @@
+
+    Day 2 - PROPS + useState
+
+2. UseState
+    * useState = React Hook that lets you add changing data (state) to your components.
+
+    * Props vs State - Simple Summary:
+      
+        * Feature	            PROPS	            STATE
+          What it does	        Displays data	    Changes/updates data
+          Can you change it?	❌ NO (read-only)   ✅ YES (dynamic)
+          Who controls it?	    Parent component	Component itself
+          Purpose	            Pass data down	    Manage changing data
+
+    *  Props = Display static data
+
+    * State = Dynamic data that updates
+
+    * WHAT IS useState?
+        * useState = remembers data that can CHANGE
+
+    
+    * WITHOUT useState:
+        * Variable changes → UI doesn't update! ❌
+
+    * WITH useState:
+        * State changes → UI updates automatically! ✅
+
+    *  <h1> {count} </h1>
+        * so we use and say that its not text so we uase { so no other purpose
+
+3. Types of useState:
+    
+    1. Number
+        const [count, setCount] = useState(0);
+
+    2. String
+        const [name, setName] = useState("");
+
+    3. Boolean
+        const [isVisible, setIsVisible] = useState(false);
+
+    4. Array
+        const [todos, setTodos] = useState([]);
+
+    5. Object
+        const [user, setUser] = useState({
+            name: "",
+            age: 0
+        });

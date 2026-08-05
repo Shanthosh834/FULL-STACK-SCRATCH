@@ -16,8 +16,42 @@
 
         * Components can show different content with same structure
 
+    3. WHAT IS PROPS?
+    
+        * Props = Data passed from Parent to Child
 
-2. 📝 Props Syntax:
+    4. LIKE:
+        * Parent = App.jsx
+        
+        * Child = UserCard.jsx
+
+        * App sends data → UserCard receives it!
+
+    5. Without Props (Problem):
+        // Every card shows SAME data! ❌
+        function UserCard() {
+            return <h2>Shanthosh</h2>;
+        }
+
+        <UserCard />  // Shanthosh
+
+    6. Every card shows DIFFERENT data! ✅
+        // PARENT sends:
+        <UserCard name="Shanthosh" age={22} />
+        <UserCard name="Kumar" age={25} />
+        <UserCard name="Sandy" age={21} />
+
+        // CHILD receives:
+        function UserCard({ name, age }) {
+            return (
+                <div>
+                    <h2>{name}</h2>
+                    <p>{age}</p>
+                </div>
+            );
+        }
+
+2. Props Syntax:
 
     1. Parent Component (Passing Props)
 
@@ -55,3 +89,6 @@
         │  Receives: { name, age }
         ▼
     Renders: Name: Shanthosh, Age: 22
+
+
+    * Props are used for components. The parent sends data (ARGUMENT) and the child receives it (PARAMETER).
