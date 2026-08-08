@@ -1,32 +1,30 @@
 import { useState } from 'react';
 
 function Arr() {
-  const [todos, setTodos] = useState([]);  // ← Starts empty array
+  const [todo, setTodo] = useState([]);
   const [input, setInput] = useState("");
 
-const addTodo = () => {
-    if (input.trim()) {
-      setTodos([...todos, input]);  // ← Add to array
+  const addTodo = () => {
+    if(input.trim()) {
+      setTodo([...todo, input]);
       setInput("");
     }
   };
-
-    return (
+  return (
     <div>
-        <input 
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Enter todo..."
-      />
+      <input type="text"
+      value={input}
+      placeholder='Enter Todo...'
+      onChange={(e) => setInput(e.target.value)} />
+
       <button onClick={addTodo}>Add</button>
-      
+
       <ul>
-        {todos.map((todo, index) => (
-          <li key={index}>{todo}</li>
+        {todo.map((todo, index) => (
+          <li key={index}> {todo} </li>
         ))}
       </ul>
     </div>
-    );
+  );
 };
-
 export default Arr;

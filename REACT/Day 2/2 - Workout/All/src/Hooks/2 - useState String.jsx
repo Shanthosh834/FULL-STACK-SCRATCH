@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 function Words() {
-  const [name, setName] = useState(""); // We Can Give Str here it will cal in {name}
+    const [name, setName] = useState("");
   return (
     <div>
         <input type="text"
@@ -11,8 +11,7 @@ function Words() {
         />
          <p> {name} </p>
     </div>
-
-        );
+  );
     };
 
 export default Words;

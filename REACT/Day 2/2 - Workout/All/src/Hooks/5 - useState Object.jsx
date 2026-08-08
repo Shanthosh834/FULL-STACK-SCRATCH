@@ -23,7 +23,7 @@ function Obj() {
         type="number"
         placeholder="Age"
         value={user.age}
-        onChange={updateAge}
+        onChange={updateAge}  
       /><br />
       <p>Name: {user.name}</p><br />
       <p>Age: {user.age}</p>

@@ -5,10 +5,11 @@ function Number() {
   return (
     <div>
       <h1> {count} </h1>
-      <button onClick={() => {setCount(count + 1)}}>Add</button>
-      <button onClick={() => {setCount(count-1)}}>Min</button>
+      <button onClick={() => {setCount(count + 1)}} style={{marginRight: '10px'}}>Max</button>
+      <button onClick={() => {setCount(count - 1)}}>Min</button>
     </div>
-          );
-      };
+  );
+
+};
 
 export default Number;
