@@ -1,0 +1,12 @@
+
+    Day 3 - useEffect & API Call
+
+1. useEffect
+    useState  = stores changing data
+    useEffect = runs code AFTER render
+
+    * USE FOR:
+        ✅ API calls (fetch data!)
+        ✅ Timers (setTimeout)
+        ✅ Subscriptions
+        ✅ Anything that happens OUTSIDE React
