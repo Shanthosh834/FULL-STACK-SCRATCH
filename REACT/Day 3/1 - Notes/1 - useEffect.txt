@@ -10,3 +10,64 @@
         ✅ Timers (setTimeout)
         ✅ Subscriptions
         ✅ Anything that happens OUTSIDE React
+
+
+2. Why Use useEffect
+    * Without useEffect	            With useEffect
+      Code runs every render	    Code runs when you want it to
+      ❌ Can't fetch data properly  ✅ Perfect for API calls
+      ❌ Infinite loops possible	   ✅ Controlled execution
+
+
+3. useEffect Syntax:
+    import { useEffect } from 'react';
+
+    function MyComponent() {
+      useEffect(() => {
+        // Code to run
+        console.log("useEffect ran!");
+      }, []);  // ← Dependency array
+
+      return <h1>Hello</h1>;
+    }
+
+
+4. 3 useEffect Patterns:
+
+     * Pattern	        Code	                        When it runs
+    1. Run ONCE	        useEffect(() => {}, [])	        When component loads (1 time)
+    2. Run on CHANGE	useEffect(() => {}, [count])	When count changes
+    3. Run EVERY time	useEffect(() => {})	            Every render
+
+
+5. What are Side Effects?
+
+    * Side effects = Things that affect the outside world:
+
+    * Side Effect	    Example
+      API calls	        Fetching data from server
+      Timers	        setTimeout, setInterval
+      DOM manipulation	Changing page title
+      Local storage	    Saving data to browser
+      Subscriptions	    WebSocket, event listeners
+
+
+5. PATTERNS (Most Important!):
+
+    import { useEffect } from 'react';
+
+    // PATTERN 1: Runs ONCE (on mount)
+    useEffect(() => {
+        console.log("Runs once!");
+    }, []); // ← empty array
+
+    // PATTERN 2: Runs when value CHANGES
+    useEffect(() => {
+        console.log("count changed!");
+    }, [count]); // ← dependency array
+
+    // PATTERN 3: Runs EVERY render
+    useEffect(() => {
+        console.log("Runs every render!");
+    }); // ← no array
+
