@@ -92,3 +92,7 @@
 
 
     * Props are used for components. The parent sends data (ARGUMENT) and the child receives it (PARAMETER).
+
+    * PROPS = Data given TO the component (from outside)
+    
+    * STATE = Data owned BY the component (can change inside)

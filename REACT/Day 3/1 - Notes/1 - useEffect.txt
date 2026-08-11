@@ -71,3 +71,4 @@
         console.log("Runs every render!");
     }); // ← no array
 
+6. In Workout there is 2 pare Part 1 with array and part 2 with api

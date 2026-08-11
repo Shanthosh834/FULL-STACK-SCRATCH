@@ -8,19 +8,26 @@ import Size from './Hooks/1 - useEffect Part 1/Tasks/3 - Window Size Track';
 function App() {
   return (
     <div>
-      <h1> Hello </h1>
+      <h1> useEffect </h1>
 
-      <Once />
+      <p> useEffect Run At Once </p>
+        <Once />
 
-      <Changed />
+      <p> useEffect Rus When Chnaged </p>
+        <Changed />
 
-      <Every />
+      <p> useEffect Runs Every Render </p>
+        <Every />
 
-      <TitleChange />
+      <h1> Tasks :  </h1>
+      <p> Task 1 - Page Title Change </p>
+        <TitleChange />
 
-      <Timer />
+      <p> Task 2 - Timer Change </p>
+        <Timer />
 
-      <Size />
+      <p> Task 3 - Window Size Tracker </p>
+        <Size />
     </div>
   );
 };
