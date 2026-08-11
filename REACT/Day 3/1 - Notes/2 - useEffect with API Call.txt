@@ -1,0 +1,43 @@
+
+    Day 3 - useEffect & API Call
+
+2. API Call
+
+    * API = Application Programming Interface
+
+    * You (Frontend) → Ask for data → API (Waiter) → Gets data from Server (Kitchen) → Returns to you
+    
+    * API is a communication bridge between user and the server
+
+    * Example:
+        * https://jsonplaceholder.typicode.com/users
+
+        * This API gives you a list of fake users.
+
+
+    1. THREE STATES FOR EVERY API CALL:
+        
+        1. data = store the result
+        2. loading = show spinner
+        3. error = show error message
+
+    2. DEPENDENCY ARRAY RULE:
+
+        1. [] = fetch once
+        2. [id] = fetch when id changes
+        3. [search] = run when search changes
+
+    3. ALWAYS:
+        
+        1. try/catch for errors
+        2. finally to stop loading
+        3. check !res.ok
+
+
+3. When to Use useEffect:
+    * Operation	    Need useEffect?	    Why
+      GET All	    ✅ Yes	           Fetch when component loads
+      GET Single	✅ Yes	           Fetch when component loads or ID changes
+      POST	        ❌ No	           Called on button click (form submit)
+      PUT	        ❌ No	           Called on button click (update)
+      DELETE	    ❌ No	           Called on button click (delete)
