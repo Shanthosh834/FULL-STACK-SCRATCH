@@ -72,3 +72,7 @@
     }); // ← no array
 
 6. In Workout there is 2 pare Part 1 with array and part 2 with api
+
+    * Button click / form submit / user action → usually no useEffect
+
+    * Automatically when component loads or when some state/prop changes → use useEffect

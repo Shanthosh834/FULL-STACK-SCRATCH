@@ -30,7 +30,7 @@ function PatternAPI() {
 
     return (
         <div>
-            <h1>Posts ({data.length})</h1>
+            <h2>Posts ({data.length})</h2>
             {data.map(post => (
                 <div key={post.id}>
                     <h3>{post.title}</h3>

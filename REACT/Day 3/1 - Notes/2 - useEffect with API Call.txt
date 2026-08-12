@@ -41,3 +41,15 @@
       POST	        ❌ No	           Called on button click (form submit)
       PUT	        ❌ No	           Called on button click (update)
       DELETE	    ❌ No	           Called on button click (delete)
+
+       -> Get All
+            * Use useEffect, !res.ok, loading
+
+        -> Get Single
+            * use useEffect, loading
+
+        -> Post
+            * use methods {}.., loading
+
+        -> Search
+            * use useEffect, filter,
