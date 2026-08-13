@@ -42,14 +42,7 @@
       PUT	        ❌ No	           Called on button click (update)
       DELETE	    ❌ No	           Called on button click (delete)
 
-       -> Get All
-            * Use useEffect, !res.ok, loading
 
-        -> Get Single
-            * use useEffect, loading
+    * useState → When your component needs to remember/change data.
 
-        -> Post
-            * use methods {}.., loading
-
-        -> Search
-            * use useEffect, filter,
+    * useEffect → When something should happen automatically because of a component/state change.
