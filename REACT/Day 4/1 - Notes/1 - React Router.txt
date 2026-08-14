@@ -15,4 +15,61 @@
     Step 1: Install React Router
         -> npm install react-router-dom
 
-        
+
+        * WITHOUT Router:
+            → One page app
+            → Can't navigate
+            → URL never changes
+
+        * WITH Router:
+            → Multiple pages
+            → Navigate between them
+            → URL changes! (/home, /about)
+            → Back button works!
+
+2. Explanations:
+    * Other project we created other components and called them all same URL had only right to navigate with pages URL /pages we use router
+    * Without Router                With Router
+      All components on one page	Each component on different URL
+      <UserCard /> shows on Home	/usercard shows UserCard
+      <About /> shows on Home	    /about shows About
+    * Without Router (All on one page):
+        -> in app.jsx <home /> <about />  same url localhost:5173/
+    * With Router (Each on different URL):
+        -> in app.jsx <home /> <about />  different localhost:5173/home, localhost:5173/about
+
+        * Step: 1:
+            * Install React Router: npm install react-router-dom
+
+        * Step: 2:
+            * Wrap App with BrowserRouter
+                * BrowserRouter = A component that enables routing in your app.
+
+                * Think of it like:
+
+                    * Without BrowserRouter → Routing doesn't work
+
+                    * With BrowserRouter → Routing works!
+
+            * Why?
+
+                * BrowserRouter gives your app the ability to:
+
+                * Read the current URL
+
+                * Change the URL when navigating
+
+                * Render the correct component for each URL
+
+        * Step: 3:
+            * Import { BrowserRouter } from 'react-router-dom';
+
+            * Should manually Do
+
+            and in main.jsx put the App inisde the <BrowserRouter>
+
+        * Step: 4:
+            * Update The App.jsx
+
+        * Step: 5:
+            * Run and test
