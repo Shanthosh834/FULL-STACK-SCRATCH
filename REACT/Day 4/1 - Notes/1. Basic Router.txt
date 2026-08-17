@@ -1,0 +1,50 @@
+
+1. Basic Router
+    * React Router uses three main components for basic routing:
+
+        Link: Creates navigation links that update the URL
+        Routes: A container for all your route definitions
+        Route: Defines a mapping between a URL path and a component
+    
+    * BrowserRouter wraps your app and enables routing functionality
+    
+    * Link components create navigation links
+
+    * Routes and Route define your routing configuration
+
+    * Steps For Basic React Router:
+        * Step: 1:
+            * Install React Router: npm install react-router-dom
+
+        * Step: 2:
+            * Wrap App with BrowserRouter
+                * BrowserRouter = A component that enables routing in your app.
+
+                * Think of it like:
+
+                    * Without BrowserRouter → Routing doesn't work
+
+                    * With BrowserRouter → Routing works!
+
+            * Why?
+
+                * BrowserRouter gives your app the ability to:
+
+                * Read the current URL
+
+                * Change the URL when navigating
+
+                * Render the correct component for each URL
+
+        * Step: 3:
+            * Import { BrowserRouter } from 'react-router-dom';
+
+            * Should manually Do
+
+            and in main.jsx put the App inisde the <BrowserRouter>
+
+        * Step: 4:
+            * Update The App.jsx
+
+        * Step: 5:
+            * Run and test

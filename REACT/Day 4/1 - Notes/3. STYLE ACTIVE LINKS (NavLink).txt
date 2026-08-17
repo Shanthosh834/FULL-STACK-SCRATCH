@@ -1,0 +1,28 @@
+
+3. STYLE ACTIVE LINKS (NavLink)
+    * NavLink is a special version of Link that knows when it's active (when its URL matches the current page).
+
+    * Without Nav link user dosent know which link he is in
+
+    * Insterd of link use Navlink thats it
+
+    * we can o styles with link itself but
+        * Feature	            Link	                         NavLink
+          Navigates to page	    ✅ Yes	                        ✅ Yes
+          Knows if it's active	❌ No	                        ✅ Yes
+          Can style when active	❌ No (you'd need manual logic)	✅ Yes (built-in isActive)
+    
+    * The reason we use navlink is for style and isactive only
+
+    * Steps to Nav Link:
+        * Step: 1:
+            * Insteard of Link use Navliink
+
+        * Step: 2:
+            * Impport the navilink
+
+        * Step: 3:
+            * Before the return create the function with isActive and start styling
+
+        * Step: 4:
+            * at navlink after to "/" call style: {call the name here}

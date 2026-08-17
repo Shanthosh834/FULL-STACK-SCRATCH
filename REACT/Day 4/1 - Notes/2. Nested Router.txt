@@ -1,0 +1,39 @@
+
+2. Nested Router
+    * You can have a Route inside another Route, this is called nested routes.
+
+    * Nested routes allow you change parts of the page when you navigate to a new URL, while other parts is not changed or reloaded, almost like having a page within a page.
+
+    * Components Needed:
+        * Component	        Purpose
+          Outlet	        Where child routes render inside parent
+          Route (nested)	Child routes defined inside parent
+
+    * Outlet:
+        * The <Outlet /> element in the Products component specifies where to render the child route's content.
+
+    * Routes:
+        * The Routes element contains the routes to CarProducts and BikeProducts as child routes of the Products parent route.
+
+    * URL Structure:
+        * The URL structure is relative to the parent route's path. For example:
+
+        * When you navigate to '/products/car', the CarProducts component is rendered.
+
+        * When you navigate to '/products/bike', the BikeProducts component is rendered.
+
+        * Steps to Nested Router:
+            * Step: 1:
+                * In App.jsx Add the Parent nav link and in routes give as usual the same path and inside parent route give child route
+
+            * Step: 2:
+                * Then Give the route on app.jsx after nav, same to "/.." to the path inside the router give the child path
+
+            * Step: 3:
+                * You SHoul give only the endpoint text only for the nested router or child router
+
+            * Step: 4:
+                * And go to the Parent component file and add the child component link with /parent/child link inside the nav
+
+            * Step: 5:
+                * then after giving th link path give the <outlet /> this indigates where the child should be rendered

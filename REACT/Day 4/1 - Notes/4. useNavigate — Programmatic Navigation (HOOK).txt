@@ -1,0 +1,30 @@
+
+4. useNavigate — Programmatic Navigation (HOOK)
+    * useNavigate is a hook that lets you navigate programmatically — meaning you can go to a page from inside a function (like after a button click, form submit, login, etc.).
+
+    * Without useNavigate ❌	       With useNavigate ✅
+      Can only navigate via <Link>	Can navigate from anywhere (functions, events)
+      Can't navigate after actions	Can navigate after form submit, login, API calls
+      Limited to click events	    Can navigate anytime, anywhere
+
+    * Basic Syntax:
+        import { useNavigate } from 'react-router-dom';
+
+        function MyComponent() {
+            const navigate = useNavigate();  // ← Get the navigate function
+
+            function goToAbout() {
+                navigate('/about');  // ← Go to About page
+            }
+
+            return (
+                <button onClick={goToAbout}>Go to About</button>
+            );
+        }
+
+    * Steps to useNavigation:
+        * Step: 1:
+            * Create a Component with useNavigate
+
+        * Step: 2:
+            * Add to App.jsx
