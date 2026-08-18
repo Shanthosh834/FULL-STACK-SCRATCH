@@ -45,4 +45,4 @@
     2. Nested Router
     3. STYLE ACTIVE LINKS (NavLink)
     4. useNavigate — Programmatic Navigation (HOOK)
-    5. Url Parameters
+    5. URL PARAMETERS (useParams)

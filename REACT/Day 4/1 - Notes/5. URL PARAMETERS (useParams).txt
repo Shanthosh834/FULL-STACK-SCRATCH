@@ -1,0 +1,40 @@
+
+5. URL PARAMETERS (useParams)
+    * URL parameters = Variables in the URL that change.
+
+    * Think of them like:
+
+        * /user/1 → Shows user with ID 1
+
+        * /user/2 → Shows user with ID 2
+
+        * /user/3 → Shows user with ID 3
+
+    * The number after /user/ is the URL parameter.
+
+    * Real Example:
+    
+    * URL	                            Parameter Value
+      http://localhost:5173/user/1	    1
+      http://localhost:5173/user/2	    2
+      http://localhost:5173/user/5	    5
+
+    
+    * Steps to define URL Parameters:
+        * Step: 1:
+            * Define Route with Parameter
+
+            * :id = This is a URL parameter
+
+            * Whatever comes after /user/ is captured as id
+
+        * Step: 2:
+            * Access Parameter in Component
+
+            import { useParams } from 'react-router-dom';
+
+            function UserProfile() {
+                const { id } = useParams();  // ← Get the parameter
+                
+                return <h1>User ID: {id}</h1>;
+            }

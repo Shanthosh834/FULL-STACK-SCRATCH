@@ -5,6 +5,9 @@ import Contact from "./Pages/Contact";
 import Products from "./Pages/Products";
 import CarProducts from "./Pages/CarProducts";
 import BikeProducts from "./Pages/BikeProducts";
+import NavButton from "./Components/NavButton";
+import Users from "./Pages/Users";
+import UserDetial from "./Pages/Userdetial";
 function App() {
 
     const navLinkStyles = ({ isActive }) => ({
@@ -23,7 +26,8 @@ function App() {
                 <NavLink to="/" style={navLinkStyles}> Home </NavLink> | {" "}
                 <NavLink to="/about" style={navLinkStyles}> About </NavLink> | {" "}
                 <NavLink to="/contact" style={navLinkStyles}> Contact </NavLink> | {" "}
-                <NavLink to="/products" style={navLinkStyles}> Products </NavLink>
+                <NavLink to="/products" style={navLinkStyles}> Products </NavLink> | {" "}
+                <NavLink to="/users" style={navLinkStyles}> Users </NavLink>
             </nav>
 
             {/* Route */}
@@ -35,7 +39,11 @@ function App() {
                     <Route path="cars" element={<CarProducts />}/>
                     <Route path="bikes" element={<BikeProducts />}/>
                 </Route>
+                <Route path="/users" element={<Users />}/>
+                <Route path="/user/:id" element={<UserDetial />}/>
             </Routes>
+            <NavButton />
+
         </div>
     );
 }

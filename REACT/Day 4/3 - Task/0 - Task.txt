@@ -1,0 +1,31 @@
+* Create a React application with the following pages and functionality. This task tests all 5 React Router concepts you've learned.
+
+Pages to create:
+
+    1. Home.jsx — Just a welcome heading.
+
+    2. About.jsx — Simple about text.
+
+    3. Products.jsx — Parent page with:
+
+        * Links: Electronics and Clothing.
+
+        * An <Outlet /> to show nested pages.
+
+    4. Electronics.jsx — List of products:
+
+        * Laptop (ID: 1)
+
+        * Phone (ID: 2)
+
+        * Headphones (ID: 3)
+            * (Each is a <Link> to /product/1, /product/2, etc.)
+
+    5. Clothing.jsx — List of products:
+
+        * T-Shirt (ID: 4)
+
+        * Jeans (ID: 5)
+            * (Each is a <Link> to /product/4, /product/5, etc.)
+
+    * ProductDetail.jsx — Gets ID from URL (useParams), finds the product, displays Name + Price + ID. Also has a "Go Back" button (useNavigate) that goes back one page.
